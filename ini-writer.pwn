@@ -4,11 +4,11 @@ stock ini_write(File:handle, Map:map) {
 
 	if(records >= MAX_RECORDS - 1) {
 		Logger_Err("attempt to write ini cache with too many records",
-			_i("records", records));
+			Logger_I("records", records));
 		records = MAX_RECORDS - 1;
 	}
 
-	Logger_Dbg("ini", "writing ini", _i("records", records));
+	Logger_Dbg("ini", "writing ini", Logger_I("records", records));
 
 	new
 		key[MAX_KEY_LENGTH],
@@ -28,8 +28,8 @@ stock ini_write(File:handle, Map:map) {
 		fwrite(handle, buffer);
 
 		Logger_Dbg("ini", "wrote record",
-			_s("key", key),
-			_s("value", val));
+			Logger_S("key", key),
+			Logger_S("value", val));
 	}
 
 	return 0;

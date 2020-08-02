@@ -65,25 +65,25 @@ new
 
 stock ini_open(const filename[]) {
 	if(ini_fileOpen) {
-		Logger_Err("attempt to open ini while file already open", _s("filename", filename));
+		Logger_Err("attempt to open ini while file already open", Logger_S("filename", filename));
 		return INI_ERR_OPEN;
 	}
 
 	new ret;
 
 	if(fexist(filename)) {
-		Logger_Dbg("ini", "opened existing file", _s("filename", filename));
+		Logger_Dbg("ini", "opened existing file", Logger_S("filename", filename));
 
 		new File:handle = fopen(filename, io_read);
 		if(!handle) {
-			Logger_Err("failed to open file for reading", _s("filename", filename));
+			Logger_Err("failed to open file for reading", Logger_S("filename", filename));
 			return INI_ERR_IO_FAIL;
 		}
 
 		ret = ini_parse(handle, ini_cache);
 		fclose(handle);
 	} else {
-		Logger_Dbg("ini", "opened new file", _s("filename", filename));
+		Logger_Dbg("ini", "opened new file", Logger_S("filename", filename));
 	}
 
 	_ini_strcpy(ini_fileName, filename, MAX_FILE_NAME);
@@ -100,7 +100,7 @@ stock ini_commit() {
 
 	new File:handle = fopen(ini_fileName, io_write);
 	if(!handle) {
-		Logger_Err("failed to open file for writing", _s("filename", ini_fileName));
+		Logger_Err("failed to open file for writing", Logger_S("filename", ini_fileName));
 		return INI_ERR_IO_FAIL;
 	}
 
@@ -157,10 +157,10 @@ stock _ini_printCache(const message[]) {
 	log("begin ini cache");
 	for(new i = 0, j = ini_recordsRead + ini_recordsAdded; i < j; ++i) {
 		log("--record",
-			_i("index", i),
-			_i("deleted", ini_cache[i][E_CACHE_DELETED]),
-			_s("key", ini_cache[i][E_CACHE_KEY]),
-			_s("value", ini_cache[i][E_CACHE_VALUE]));
+			Logger_I("index", i),
+			Logger_I("deleted", ini_cache[i][E_CACHE_DELETED]),
+			Logger_S("key", ini_cache[i][E_CACHE_KEY]),
+			Logger_S("value", ini_cache[i][E_CACHE_VALUE]));
 	}
 	log("end ini cache");
 }

@@ -61,9 +61,9 @@ stock ini_parse(File:handle, &Map:map) {
 			_ini_strcpy(val, buffer[delim + offset], MAX_VAL_LENGTH);
 
 			Logger_Dbg("ini", "read record",
-				_i("record", records),
-				_s("key", key),
-				_s("value", val));
+				Logger_I("record", records),
+				Logger_S("key", key),
+				Logger_S("value", val));
 			
 			MAP_insert_str_str(map, key, val);
 			records++;
