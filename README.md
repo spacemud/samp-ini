@@ -42,19 +42,19 @@ ini_open("file.ini");
 new valueString[32];
 new error = ini_getString("keyString", valueString);
 if(error != 0) {
-    err("failed to get ini value", _i("errorCode", error));
+    Logger_Err("failed to get ini value", _i("errorCode", error));
 }
 
 new valueInteger;
 new error = ini_getInt("keyInteger", valueInteger);
 if(error != 0) {
-    err("failed to get ini value", _i("errorCode", error));
+    Logger_Err("failed to get ini value", _i("errorCode", error));
 }
 
 new Float:valueFloat;
 new error = ini_getFloat("keyFloat", valueFloat);
 if(error != 0) {
-    err("failed to get ini value", _i("errorCode", error));
+    Logger_Err("failed to get ini value", _i("errorCode", error));
 }
 
 ini_close();
@@ -70,19 +70,19 @@ ini_open("file.ini");
 new valueString[32] = {"hello world"};
 new error = ini_setString("keyString", valueString);
 if(error != 0) {
-    err("failed to set ini value", _i("errorCode", error));
+    Logger_Err("failed to set ini value", _i("errorCode", error));
 }
 
 new valueInteger = 5;
 new error = ini_setInt("keyInteger", valueInteger);
 if(error != 0) {
-    err("failed to set ini value", _i("errorCode", error));
+    Logger_Err("failed to set ini value", _i("errorCode", error));
 }
 
 new Float:valueFloat = 5.5;
 new error = ini_setFloat("keyFloat", valueFloat);
 if(error != 0) {
-    err("failed to set ini value", _i("errorCode", error));
+    Logger_Err("failed to set ini value", _i("errorCode", error));
 }
 
 ini_commit();
